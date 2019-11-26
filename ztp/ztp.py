@@ -1,3 +1,4 @@
+"""
 # =========================================================================== #
 #                                                                             #
 #  Cisco ZTP Client                                  ||         ||            #
@@ -6,9 +7,22 @@
 #                                               ..:||||||:...:||||||:..       #
 #  Author: Oren Brigg                          ------------------------       #
 #                                              C i s c o  S y s t e m s       #
-#  Version: 0.2 beta                                                          #
+#  Version: 0.4 beta                                                          #
 #                                                                             #
 # =========================================================================== #
+
+Procedure:
+1. Check if upgrade is required (version not equal to the required version).
+    a. check if the file already exists on flash, if not - copy.
+    b. verify the MD5 of the file.
+    c. upgrade the switch.
+    d. perform cleanup.
+2. Clean certificates.
+3. Copy the configuration file <Serial number>.cfg from the TFTP server.
+4. Deploy config.
+
+Notice the script does not perform "write mem" at the end, in case of rollback.
+"""
 
 from cli import configure, cli, pnp
 import re
